@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.jdc.clinic.model.Task;
 
 @Repository
-
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
 	public List<Task> findByTitle(String title);

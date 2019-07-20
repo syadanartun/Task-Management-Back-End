@@ -1,12 +1,13 @@
 package com.jdc.clinic.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.jdc.clinic.model.Task;
 
 public interface TaskService {
 
-	public Task getOneById(Integer id);
+	public Optional<Task> getOneById(Integer id);
 
 	public List<Task> getAll();
 

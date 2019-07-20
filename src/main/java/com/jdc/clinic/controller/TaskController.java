@@ -1,8 +1,10 @@
 package com.jdc.clinic.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,8 @@ import com.jdc.clinic.service.TaskService;
 
 @RequestMapping("/tasks")
 @RestController
+
+@CrossOrigin(origins = "*")
 public class TaskController {
 	@Autowired
 	private TaskService taskService;
@@ -31,8 +35,8 @@ public class TaskController {
 	 * String title) { return taskService.getAllByTitle(title); }
 	 */
 
-	@GetMapping("{/id}")
-	public Task task(@PathVariable("id") Integer id) {
+	@GetMapping("/{id}")
+	public Optional<Task> task(@PathVariable("id") Integer id) {
 		return taskService.getOneById(id);
 	}
 
@@ -46,7 +50,7 @@ public class TaskController {
 		return taskService.updateTask(task);
 	}
 
-	@DeleteMapping("{/id}")
+	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") Integer id) {
 		taskService.deleteTask(id);
 

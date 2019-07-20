@@ -1,6 +1,7 @@
 package com.jdc.clinic.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ public class TaskServiceImpl implements TaskService {
 	private TaskRepository taskRepository;
 
 	@Override
-	public Task getOneById(Integer id) {
-		return taskRepository.getOne(id);
+	public Optional<Task> getOneById(Integer id) {
+		return taskRepository.findById(id);
 	}
 
 	@Override
@@ -42,8 +43,7 @@ public class TaskServiceImpl implements TaskService {
 
 	@Override
 	public void deleteTask(Integer id) {
-		Task task = this.getOneById(id);
-		taskRepository.delete(task);
+		taskRepository.deleteById(id);
 
 	}
 
