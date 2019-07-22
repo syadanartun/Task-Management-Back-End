@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class User implements Serializable {
 
 	/**
@@ -38,7 +41,7 @@ public class User implements Serializable {
 
 	private String password;
 
-	private boolean activated;
+	private boolean activated = true;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_roles")
